@@ -44,6 +44,8 @@ export default class NotificationPermissionsPlugin implements FlutterPlugin, Met
 
   onMethodCall(call: MethodCall, result: MethodResult): void {
     if (call.method == "getNotificationPermissionStatus") {
+      this.getNotificationStatus(result);
+    } else if (call.method == "requestNotificationPermissions") {
       // let sound = call.argument("sound") as boolean ?? false;
       // let alert = call.argument("alert") as boolean ?? false;
       // let badge = call.argument("badge") as boolean ?? false;
@@ -56,9 +58,6 @@ export default class NotificationPermissionsPlugin implements FlutterPlugin, Met
           this.getNotificationStatus(result);
         }
       });
-
-    } else if (call.method == "requestNotificationPermissions") {
-      this.getNotificationStatus(result);
     } else {
       result.notImplemented()
     }
